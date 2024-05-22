@@ -38,6 +38,23 @@ def main():
     hmi_config = data_config['HMI']
 
     HMI_flag = config['DATA']['HMI']
+
+    ###  Weather recieve  ###
+    sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+    from Weather.main import weather_main
+
+    weather_main(save_path)
+    # from Weather import request_estimation, request_weather
+
+    # request_est = request_estimation.Estimator(save_path)
+    # interesting_odos = request_est.find_odos()
+    # print(f'ODO : {interesting_odos}')
+
+    # weather_recv = request_weather.WeatherReceiver(save_path)
+    # if len(interesting_odos)!=0:
+    #     weather_recv.logging_weather(interesting_odos)
+    #####################
+
     ###  CAN setting  ###
     CAN_flag = config['DATA']['CAN']
     CAN_basePath = os.path.join(save_path, 'dbc')
@@ -104,8 +121,8 @@ def main():
     stop_event = multiprocessing.Event()
     send_conn, recv_conn = multiprocessing.Pipe()
 
-    data_names = ['CAN', 'audio', 
-                  'GNSS', 
+    data_names = ['CAN', 'audio',
+                  'GNSS',
                   'INSIDE_FRONT_CAMERA',
                   'INSIDE_SIDE_CAMERA',
                   'OUTSIDE_FRONT_CENTER_CAMERA',
@@ -209,7 +226,8 @@ def main():
         info += str(config['DATA']['audio']) + ','
         info += str(config['DATA']['GNSS']) + ','
         info += str(receive_trf_info) + ','
-        info += str(outFrontCenterView) + '\n'
+        info += str(outFrontCenterView) + ','
+        info += '\n' # Weather column initialization
 
         f.write(info)
         f.close()
