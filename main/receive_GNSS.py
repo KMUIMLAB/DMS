@@ -11,11 +11,12 @@ import numpy as np
 import configparser
 import os
 from check_status import check_driver, check_odometer
+from api_key import TRAFFIC_API_KEY
 
 
 def request_traffic_info(lat, lon):
     try:
-        r = requests.get(f"https://apis.openapi.sk.com/tmap/traffic?version=1&trafficType={str('POINT')}&centerLat={lat}&centerLon={lon}&zoomLevel=7&appKey=l7xxda3105b5da544f43aecda3971557249a")
+        r = requests.get(f"https://apis.openapi.sk.com/tmap/traffic?version=1&trafficType={str('POINT')}&centerLat={lat}&centerLon={lon}&zoomLevel=7&appKey={TRAFFIC_API_KEY}")
         traffic_info = r.json()
     except:
         print("[WARNING] Traffic info request failed. WIFI or LTE could be the problem.")

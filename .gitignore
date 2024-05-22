@@ -7,3 +7,5 @@ DMS_dataset/
 .vscode/
 dbc/
 *.swp
+
+main/api_key.py
