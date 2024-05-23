@@ -1,5 +1,5 @@
 config = {'SAVE_PATH': '/media/imlab/Samsung_T5/dms_rev1/',
-          'VERSION': 'v1.3.0',
+          'VERSION': 'v1.4.0',
           'DRIVER_LIST': ["Sejoon", "Geesung",\
                           "Rakcheol", "Youngjun",\
                           "Seungyeob", "Chanyoung"],
